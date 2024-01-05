@@ -2,3 +2,4 @@
 **/.vs/
 **/obj/
 HarmonyHub/appsettings.json
+*.user
