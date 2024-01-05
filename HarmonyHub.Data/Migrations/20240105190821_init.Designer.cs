@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HarmonyHub.Data.Migrations
 {
     [DbContext(typeof(HarmonyHubDbContext))]
-    [Migration("20240105175709_init")]
+    [Migration("20240105190821_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -70,9 +70,16 @@ namespace HarmonyHub.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("PlayList");
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
+
+                    b.ToTable("PlayLists");
                 });
 
             modelBuilder.Entity("HarmonyHub.Data.Entities.PlayListSong", b =>
@@ -218,9 +225,6 @@ namespace HarmonyHub.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("PlayListId")
-                        .IsUnique();
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -377,6 +381,15 @@ namespace HarmonyHub.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("HarmonyHub.Data.Entities.PlayList", b =>
+                {
+                    b.HasOne("HarmonyHub.Data.Entities.User", "User")
+                        .WithOne("PlayList")
+                        .HasForeignKey("HarmonyHub.Data.Entities.PlayList", "UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("HarmonyHub.Data.Entities.PlayListSong", b =>
                 {
                     b.HasOne("HarmonyHub.Data.Entities.PlayList", "PlayList")
@@ -403,17 +416,6 @@ namespace HarmonyHub.Data.Migrations
                         .HasForeignKey("AudioStorageFileId");
 
                     b.Navigation("AudioStorageFile");
-                });
-
-            modelBuilder.Entity("HarmonyHub.Data.Entities.User", b =>
-                {
-                    b.HasOne("HarmonyHub.Data.Entities.PlayList", "PlayList")
-                        .WithOne("User")
-                        .HasForeignKey("HarmonyHub.Data.Entities.User", "PlayListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PlayList");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -470,8 +472,11 @@ namespace HarmonyHub.Data.Migrations
             modelBuilder.Entity("HarmonyHub.Data.Entities.PlayList", b =>
                 {
                     b.Navigation("Songs");
+                });
 
-                    b.Navigation("User");
+            modelBuilder.Entity("HarmonyHub.Data.Entities.User", b =>
+                {
+                    b.Navigation("PlayList");
                 });
 #pragma warning restore 612, 618
         }

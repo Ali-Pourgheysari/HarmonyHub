@@ -7,7 +7,7 @@ namespace HarmonyHub.Data
 {
     public class HarmonyHubDbContext : IdentityDbContext<User>
     {
-        public DbSet<PlayList> PlayList { get; set; }
+        public DbSet<PlayList> PlayLists { get; set; }
 
         public DbSet<PlayListSong> PlayListSongs { get; set; }
 
