@@ -7,9 +7,9 @@ namespace HarmonyHub.Data.Entities
     {
         [Required, MaxLength(100)]
         public string? Name { get; set; }
-        public DateTime CreateDate { get; set; }
         public int? AudioStorageFileId { get; set; }
         [ForeignKey(nameof(AudioStorageFileId))]
         public StorageFile? AudioStorageFile { get; set; }
+        public ICollection<Artist> Artists { get; set; } = new List<Artist>();
     }
 }

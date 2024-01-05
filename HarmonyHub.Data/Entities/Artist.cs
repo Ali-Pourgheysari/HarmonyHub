@@ -8,5 +8,6 @@ namespace HarmonyHub.Data.Entities
         public string? FirstName { get; set; }
         [MaxLength(100)]
         public string? LastName { get; set; }
+        public ICollection<Song> Songs { get; set; } = new List<Song>();
     }
 }

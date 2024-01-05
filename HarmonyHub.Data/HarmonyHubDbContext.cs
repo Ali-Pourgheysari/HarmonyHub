@@ -1,14 +1,15 @@
 ﻿using HarmonyHub.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace HarmonyHub.Data
 {
-    public class HarmonyHubDbContext : DbContext
+    public class HarmonyHubDbContext : IdentityDbContext<User>
     {
-        public DbSet<Album> Albums { get; set; }
+        public DbSet<PlayList> PlayList { get; set; }
 
-        public DbSet<AlbumSong> AlbumSongs { get; set; }
+        public DbSet<PlayListSong> PlayListSongs { get; set; }
 
         public DbSet<Artist> Artists { get; set; }
 
@@ -16,13 +17,7 @@ namespace HarmonyHub.Data
 
         public DbSet<StorageFile> StorageFiles { get; set; }
 
-        public DbSet<User> Users { get; set; }
-
-        public DbSet<UserAlbum> UserAlbums { get; set; }
-
-
         public HarmonyHubDbContext(DbContextOptions<HarmonyHubDbContext> options) : base(options) { }
-
     }
 }
 
