@@ -33,7 +33,7 @@ namespace HarmonyHub.Services
         }
 
 
-        public async Task<List<Song>> GetSongsListAsync()
+        public async Task<List<Song>> GetAllSongsAsync()
         {
             List<Song> list = await dbContext.Songs
                 .Include(s => s.Artists)
