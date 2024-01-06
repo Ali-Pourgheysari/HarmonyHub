@@ -1,5 +1,6 @@
 ﻿using HarmonyHub.Data;
 using HarmonyHub.Data.Entities;
+using HarmonyHub.Data.Models;
 using HarmonyHub.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
@@ -24,7 +25,7 @@ namespace HarmonyHub.Services
         {
             await Task.Run(() =>
             {
-                dbContext.Add(song);
+                dbContext.Songs.Add(song);
                 dbContext.SaveChanges();
             });
 

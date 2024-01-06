@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using HarmonyHub.Data.EntityMappings;
+using HarmonyHub.Data.Models;
+using HarmonyHub.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -7,6 +10,13 @@ namespace HarmonyHub.Areas.Admin.Controllers
     [Area("Admin")]
     public class AdminController : Controller
     {
+        private readonly ISongService songService;
+
+        public AdminController(ISongService songService)
+        {
+            this.songService = songService;
+        }
+
         [Route("Admin")]
         // GET: HomeController
         public ActionResult Index()
@@ -23,16 +33,11 @@ namespace HarmonyHub.Areas.Admin.Controllers
         // POST: HomeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(SongModel collection)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var song = await songService.AddSongAsync(collection.ToSongEntity());
+            Console.WriteLine(song.Name);
+            return View();
         }
     }
 }

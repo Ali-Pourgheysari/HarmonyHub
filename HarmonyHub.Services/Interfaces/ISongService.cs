@@ -1,4 +1,5 @@
 ﻿using HarmonyHub.Data.Entities;
+using HarmonyHub.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

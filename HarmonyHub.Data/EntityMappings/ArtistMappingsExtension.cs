@@ -40,5 +40,36 @@ namespace HarmonyHub.Data.EntityMappings
             }
             return artistModels;
         }
+
+        public static Artist ToArtistEntity(this ArtistModel artist)
+        {
+            if (artist == null)
+            {
+                throw new ArgumentNullException(nameof(artist));
+            }
+
+            return new Artist
+            {
+                Id = artist.Id,
+                FirstName = artist.FirstName,
+                LastName = artist.LastName
+            };
+        }
+
+        public static List<Artist> ToArtistEntityList(this List<ArtistModel> artists)
+        {
+            var artistList = new List<Artist>();
+
+            if (artists == null)
+            {
+                throw new ArgumentNullException(nameof(artists));
+            }
+
+            foreach (var artist in artists)
+            {
+                artistList.Add(artist.ToArtistEntity());
+            }
+            return artistList;
+        }
     }
 }

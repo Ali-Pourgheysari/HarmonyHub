@@ -21,5 +21,17 @@ namespace HarmonyHub.Data.EntityMappings
                 FilePath = storageFile.FilePath,
             };
         }
+
+        public static StorageFile ToStorageFileEntity(this StorageFileModel storageFile)
+        {
+            if (storageFile == null) throw new ArgumentNullException(nameof(storageFile));
+
+            return new StorageFile
+            {
+                Id = storageFile.Id,
+                DisplayName = storageFile.DisplayName,
+                FilePath = storageFile.FilePath,
+            };
+        }
     }
 }

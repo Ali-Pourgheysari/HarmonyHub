@@ -1,5 +1,6 @@
 ﻿using HarmonyHub.Data.Entities;
 using HarmonyHub.Data.Models;
+using HarmonyHub.Data.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,23 @@ namespace HarmonyHub.Data.EntityMappings
                 songModels.Add(song.ToSongModel());
             }
             return songModels;
+        }
+
+        public static Song ToSongEntity(this SongModel song)
+        {
+            if (song == null)
+            {
+                throw new ArgumentNullException(nameof(song));
+            }
+
+            song = song.ToNormalizedSongModel();
+            return new Song()
+            {
+                Artists = song.Artists.ToList().ToArtistEntityList(),
+                Name = song.Name,
+                AudioStorageFile = song.AudioStorageFile?.ToStorageFileEntity(),
+                CoverStorageFile = song.CoverStorageFile?.ToStorageFileEntity(),
+            };
         }
     }
 }
