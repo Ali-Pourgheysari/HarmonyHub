@@ -18,7 +18,7 @@ namespace HarmonyHub.Services
         {
             this.dbContext = dbContext;
         }
-        public async Task<List<Artist>> GetAllArtistsAsync(Artist artist)
+        public async Task<List<Artist>> GetAllArtistsAsync()
         {
             return await dbContext.Artists
                 .Include(x => x.Songs)
