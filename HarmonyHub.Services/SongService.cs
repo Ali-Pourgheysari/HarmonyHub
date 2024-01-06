@@ -36,5 +36,17 @@ namespace HarmonyHub.Services
                 .ToList();
             return list;
         }
+
+        public List<Song> GetRandomSongs(int count)
+        {
+            List<Song> list = new();
+            list = dbContext.Songs
+                .Include(s => s.Artists)
+                .Include(s => s.CoverStorageFile)
+                .OrderBy(s => Guid.NewGuid())
+                .Take(count)
+                .ToList();
+            return list;
+        }
     }
 }

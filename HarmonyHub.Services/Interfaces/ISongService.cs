@@ -11,5 +11,6 @@ namespace HarmonyHub.Services.Interfaces
     {
         Song AddSong(Song song);
         List<Song> GetSongsList();
+        List<Song> GetRandomSongs(int count);
     }
 }
