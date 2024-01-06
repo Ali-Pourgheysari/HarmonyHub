@@ -22,6 +22,7 @@ namespace HarmonyHub.Services
         {
             return await dbContext.Artists
                 .Include(x => x.Songs)
+                .Include(x => x.PhotoStorageFile)
                 .ToListAsync();
         }
 
