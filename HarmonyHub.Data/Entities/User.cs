@@ -12,5 +12,6 @@ namespace HarmonyHub.Data.Entities
         public string? LastName { get; set; }
         public int PlayListId { get; set; }
         public PlayList? PlayList { get; set; }
+        public ICollection<UserFollowing> FollowingArtists { get; set; } = new List<UserFollowing>();
     }
 }

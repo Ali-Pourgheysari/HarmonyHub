@@ -29,17 +29,17 @@
         <li><a href="discover.html">Discover</a></li>
                 @if (SignInManager.IsSignedIn(User))
                 {
-            <li>
-                <form id="logoutForm"  asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                            <a href="#" onclick="logout()" id="logout">Logout</a>
-                </form>
-            </li>
+                    <li>
+                        <form id="logoutForm"  asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                    <a href="#" onclick="logout()" id="logout">Logout</a>
+                        </form>
+                    </li>
                 }
                 else
                 {
-            <li>
-                <a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-            </li>
+                    <li>
+                        <a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    </li>
                 }
       </ul>
     </nav>

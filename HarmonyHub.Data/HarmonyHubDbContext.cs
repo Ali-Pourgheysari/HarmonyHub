@@ -9,6 +9,8 @@ namespace HarmonyHub.Data
     {
         public DbSet<PlayList> PlayLists { get; set; }
 
+        public DbSet<UserFollowing> UserFollowings { get; set; }
+
         public DbSet<PlayListSong> PlayListSongs { get; set; }
 
         public DbSet<Artist> Artists { get; set; }
