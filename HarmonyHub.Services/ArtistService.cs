@@ -24,5 +24,12 @@ namespace HarmonyHub.Services
                 .Include(x => x.Songs)
                 .ToListAsync();
         }
+
+        public async Task<Artist> GetArtistByIdAsync(int id)
+        {
+			return await dbContext.Artists
+				.Include(x => x.Songs)
+                .FirstAsync(x => x.Id == id);
+		}
     }
 }

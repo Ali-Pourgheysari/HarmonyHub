@@ -20,6 +20,7 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
     .AddEntityFrameworkStores<HarmonyHubDbContext>();
 
 builder.Services.AddTransient<ISongService, SongService>();
+builder.Services.AddTransient<IArtistService, ArtistService>();
 
 var app = builder.Build();
 app.MapRazorPages();
@@ -43,7 +44,7 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute("Areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-    endpoints.MapControllerRoute("Default", "{controller=Home}/{action=Index}/{id?}");
+	endpoints.MapControllerRoute("Default", "{controller=Home}/{action=Index}/{id?}");
 });
 
 

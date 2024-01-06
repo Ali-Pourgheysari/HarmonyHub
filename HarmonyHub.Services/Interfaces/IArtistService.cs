@@ -10,5 +10,6 @@ namespace HarmonyHub.Services.Interfaces
     public interface IArtistService
     {
         Task<List<Artist>> GetAllArtistsAsync(Artist artist);
+        Task<Artist> GetArtistByIdAsync(int id);
     }
 }
