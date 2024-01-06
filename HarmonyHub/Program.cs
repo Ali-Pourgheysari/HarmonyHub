@@ -2,6 +2,8 @@ using HarmonyHub.Data;
 using HarmonyHub.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using HarmonyHub.Services.Interfaces;
+using HarmonyHub.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,8 @@ builder.Services.AddDbContext<HarmonyHubDbContext>(
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<HarmonyHubDbContext>();
+
+builder.Services.AddTransient<ISongService, SongService>;
 
 var app = builder.Build();
 app.MapRazorPages();
