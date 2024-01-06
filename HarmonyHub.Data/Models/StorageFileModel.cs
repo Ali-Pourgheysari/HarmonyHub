@@ -2,7 +2,7 @@
 
 namespace HarmonyHub.Data.Models
 {
-    public class StorageFile
+    public class StorageFileModel
     {
         public int Id { get; set; }
         public string? DisplayName { get; set; }

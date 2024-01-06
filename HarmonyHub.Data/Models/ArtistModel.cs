@@ -2,7 +2,7 @@
 
 namespace HarmonyHub.Data.Models
 {
-    public class Artist
+    public class ArtistModel
     {
         public int Id { get; set; }
         public string? FirstName { get; set; }
