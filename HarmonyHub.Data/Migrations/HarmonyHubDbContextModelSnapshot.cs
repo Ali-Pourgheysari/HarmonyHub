@@ -54,12 +54,7 @@ namespace HarmonyHub.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("PhotoSorageFileId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PhotoSorageFileId");
 
                     b.ToTable("Artists");
                 });
@@ -409,17 +404,6 @@ namespace HarmonyHub.Data.Migrations
                         .HasForeignKey("SongsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("HarmonyHub.Data.Entities.Artist", b =>
-                {
-                    b.HasOne("HarmonyHub.Data.Entities.StorageFile", "PhotoStorageFile")
-                        .WithMany()
-                        .HasForeignKey("PhotoSorageFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PhotoStorageFile");
                 });
 
             modelBuilder.Entity("HarmonyHub.Data.Entities.PlayList", b =>

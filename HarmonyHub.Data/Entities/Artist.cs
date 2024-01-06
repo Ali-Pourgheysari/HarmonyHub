@@ -10,9 +10,6 @@ namespace HarmonyHub.Data.Entities
         public string? FirstName { get; set; }
         [MaxLength(100)]
         public string? LastName { get; set; }
-        public StorageFile? PhotoStorageFile { get; set; }
-        [ForeignKey(nameof(PhotoStorageFile))]
-        public int PhotoSorageFileId { get; set; }
         public ICollection<Song> Songs { get; set; } = new List<Song>();
     }
 }
