@@ -32,6 +32,7 @@ namespace HarmonyHub.Services
             List<Song> list = new List<Song>();
             list = dbContext.Songs
                 .Include(s => s.Artists)
+                .Include(s => s.CoverStorageFile)
                 .ToList();
             return list;
         }
