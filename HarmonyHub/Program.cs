@@ -19,7 +19,7 @@ builder.Services.AddDbContext<HarmonyHubDbContext>(
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<HarmonyHubDbContext>();
 
-builder.Services.AddTransient<ISongService, SongService>;
+builder.Services.AddTransient<ISongService, SongService>();
 
 var app = builder.Build();
 app.MapRazorPages();
