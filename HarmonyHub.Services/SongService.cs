@@ -20,32 +20,37 @@ namespace HarmonyHub.Services
             this.dbContext = dbContext;
         }
 
-        public Song AddSong(Song song)
+        public async Task<Song> AddSongAsync(Song song)
         {
-            dbContext.Add(song);
-            dbContext.SaveChanges();
+            await Task.Run(() =>
+            {
+                dbContext.Add(song);
+                dbContext.SaveChanges();
+            });
+
             return song;
         }
 
-        public List<Song> GetSongsList()
+
+        public async Task<List<Song>> GetSongsListAsync()
         {
-            List<Song> list = new List<Song>();
-            list = dbContext.Songs
+            List<Song> list = await dbContext.Songs
                 .Include(s => s.Artists)
                 .Include(s => s.CoverStorageFile)
-                .ToList();
+                .ToListAsync();
+
             return list;
         }
 
-        public List<Song> GetRandomSongs(int count)
+
+        public async Task<List<Song>> GetRandomSongsAsync(int count)
         {
-            List<Song> list = new();
-            list = dbContext.Songs
+            List<Song> list = await dbContext.Songs
                 .Include(s => s.Artists)
                 .Include(s => s.CoverStorageFile)
                 .OrderBy(s => Guid.NewGuid())
                 .Take(count)
-                .ToList();
+                .ToListAsync();
             return list;
         }
     }

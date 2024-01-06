@@ -9,8 +9,8 @@ namespace HarmonyHub.Services.Interfaces
 {
     public interface ISongService
     {
-        Song AddSong(Song song);
-        List<Song> GetSongsList();
-        List<Song> GetRandomSongs(int count);
+        Task<Song> AddSongAsync(Song song);
+        Task<List<Song>> GetSongsListAsync();
+        Task<List<Song>> GetRandomSongsAsync(int count);
     }
 }
