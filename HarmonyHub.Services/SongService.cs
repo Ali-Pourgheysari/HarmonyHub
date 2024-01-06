@@ -54,5 +54,13 @@ namespace HarmonyHub.Services
                 .ToListAsync();
             return list;
         }
+
+        public async Task<Song> GetSongByIdAsync(int id)
+        {
+            return await dbContext.Songs
+                .Include(s => s.Artists)
+                .Include(s => s.CoverStorageFile)
+                .FirstAsync(s => s.Id == id);
+        }
     }
 }

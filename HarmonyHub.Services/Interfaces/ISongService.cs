@@ -13,5 +13,6 @@ namespace HarmonyHub.Services.Interfaces
         Task<Song> AddSongAsync(Song song);
         Task<List<Song>> GetAllSongsAsync();
         Task<List<Song>> GetRandomSongsAsync(int count);
+        Task<Song> GetSongByIdAsync(int id);
     }
 }

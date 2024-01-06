@@ -1,0 +1,99 @@
+﻿@model ArtistModel
+@{
+	ViewData["Title"] = Model.FirstName + Model.LastName;
+	Layout = "_SideBar";
+}
+
+<link rel="stylesheet" href="~/css/artist.css" />
+<div style="margin-left: 244px">
+<div class="content">
+    <div class="content__middle">
+
+      <div class="artist is-verified">
+
+        <div class="artist__header">
+
+          <div class="artist__info">
+
+            <div class="profile__img">
+
+              <img src="~/static/ali.jpg" alt="G-Eazy" />
+
+            </div>
+
+            <div class="artist__info__meta">
+
+              <div class="artist__info__type">Artist</div>
+
+              <div class="artist__info__name">@(Model.FirstName + " " + Model.LastName)</div>
+
+              <div class="artist__info__actions">
+
+                <button class="button-light">Follow</button>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="artist__content">
+
+          <div class="tab-content">
+
+            <!-- Overview -->
+            <div role="tabpanel" class="tab-pane active" id="artist-overview">
+
+              <div class="overview">
+
+                <div class="overview__artist">
+                  <!-- Popular-->
+                  <div class="section-title">Popular</div>
+
+                  <div class="tracks">
+                        @foreach (var track in Model.Songs.Take(10))
+						{
+							<div class="track">
+
+								<div class="track__art">
+
+									<img src="@track?.CoverStorageFile?.FilePath" alt="@track?.Name" />
+
+								</div>
+
+								<div class="track__number">@(Model.Songs.IndexOf(track)+1)</div>
+
+								<div class="track__added">
+
+									<i class="ion-checkmark-round added"></i>
+
+								</div>
+
+								<div class="track__title">@track.Name</div>
+
+								<div class="track__explicit">
+
+									<span class="label">Explicit</span>
+
+								</div>
+
+							</div>
+						}
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+</div>
+</div>
+
+
