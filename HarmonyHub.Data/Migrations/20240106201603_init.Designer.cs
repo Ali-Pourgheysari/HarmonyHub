@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HarmonyHub.Data.Migrations
 {
     [DbContext(typeof(HarmonyHubDbContext))]
-    [Migration("20240106171541_init")]
+    [Migration("20240106201603_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -24,21 +24,6 @@ namespace HarmonyHub.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ArtistSong", b =>
-                {
-                    b.Property<int>("ArtistsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SongsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ArtistsId", "SongsId");
-
-                    b.HasIndex("SongsId");
-
-                    b.ToTable("ArtistSong");
-                });
 
             modelBuilder.Entity("HarmonyHub.Data.Entities.Artist", b =>
                 {
@@ -57,9 +42,37 @@ namespace HarmonyHub.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("PhotoSorageFileId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("PhotoSorageFileId");
+
                     b.ToTable("Artists");
+                });
+
+            modelBuilder.Entity("HarmonyHub.Data.Entities.ArtistSong", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ArtistId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SongId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArtistId");
+
+                    b.HasIndex("SongId");
+
+                    b.ToTable("ArtistSong");
                 });
 
             modelBuilder.Entity("HarmonyHub.Data.Entities.PlayList", b =>
@@ -394,19 +407,34 @@ namespace HarmonyHub.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ArtistSong", b =>
+            modelBuilder.Entity("HarmonyHub.Data.Entities.Artist", b =>
                 {
-                    b.HasOne("HarmonyHub.Data.Entities.Artist", null)
+                    b.HasOne("HarmonyHub.Data.Entities.StorageFile", "PhotoStorageFile")
                         .WithMany()
-                        .HasForeignKey("ArtistsId")
+                        .HasForeignKey("PhotoSorageFileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HarmonyHub.Data.Entities.Song", null)
+                    b.Navigation("PhotoStorageFile");
+                });
+
+            modelBuilder.Entity("HarmonyHub.Data.Entities.ArtistSong", b =>
+                {
+                    b.HasOne("HarmonyHub.Data.Entities.Artist", "Artist")
                         .WithMany()
-                        .HasForeignKey("SongsId")
+                        .HasForeignKey("ArtistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("HarmonyHub.Data.Entities.Song", "Song")
+                        .WithMany("Artists")
+                        .HasForeignKey("SongId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Artist");
+
+                    b.Navigation("Song");
                 });
 
             modelBuilder.Entity("HarmonyHub.Data.Entities.PlayList", b =>
@@ -525,6 +553,11 @@ namespace HarmonyHub.Data.Migrations
             modelBuilder.Entity("HarmonyHub.Data.Entities.PlayList", b =>
                 {
                     b.Navigation("Songs");
+                });
+
+            modelBuilder.Entity("HarmonyHub.Data.Entities.Song", b =>
+                {
+                    b.Navigation("Artists");
                 });
 
             modelBuilder.Entity("HarmonyHub.Data.Entities.User", b =>

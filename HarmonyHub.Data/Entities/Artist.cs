@@ -13,6 +13,5 @@ namespace HarmonyHub.Data.Entities
         public StorageFile? PhotoStorageFile { get; set; }
         [ForeignKey(nameof(PhotoStorageFile))]
         public int PhotoSorageFileId { get; set; }
-        public ICollection<Song> Songs { get; set; } = new List<Song>();
     }
 }
