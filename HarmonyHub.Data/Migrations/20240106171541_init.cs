@@ -12,6 +12,20 @@ namespace HarmonyHub.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Artists",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Artists", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -192,24 +206,28 @@ namespace HarmonyHub.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Artists",
+                name: "UserFollowings",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    PhotoSorageFileId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ArtistId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Artists", x => x.Id);
+                    table.PrimaryKey("PK_UserFollowings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Artists_StorageFiles_PhotoSorageFileId",
-                        column: x => x.PhotoSorageFileId,
-                        principalTable: "StorageFiles",
+                        name: "FK_UserFollowings_Artists_ArtistId",
+                        column: x => x.ArtistId,
+                        principalTable: "Artists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserFollowings_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -239,51 +257,24 @@ namespace HarmonyHub.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserFollowings",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ArtistId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserFollowings", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserFollowings_Artists_ArtistId",
-                        column: x => x.ArtistId,
-                        principalTable: "Artists",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserFollowings_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ArtistSong",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ArtistId = table.Column<int>(type: "int", nullable: false),
-                    SongId = table.Column<int>(type: "int", nullable: false)
+                    ArtistsId = table.Column<int>(type: "int", nullable: false),
+                    SongsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ArtistSong", x => x.Id);
+                    table.PrimaryKey("PK_ArtistSong", x => new { x.ArtistsId, x.SongsId });
                     table.ForeignKey(
-                        name: "FK_ArtistSong_Artists_ArtistId",
-                        column: x => x.ArtistId,
+                        name: "FK_ArtistSong_Artists_ArtistsId",
+                        column: x => x.ArtistsId,
                         principalTable: "Artists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ArtistSong_Songs_SongId",
-                        column: x => x.SongId,
+                        name: "FK_ArtistSong_Songs_SongsId",
+                        column: x => x.SongsId,
                         principalTable: "Songs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -316,19 +307,9 @@ namespace HarmonyHub.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Artists_PhotoSorageFileId",
-                table: "Artists",
-                column: "PhotoSorageFileId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArtistSong_ArtistId",
+                name: "IX_ArtistSong_SongsId",
                 table: "ArtistSong",
-                column: "ArtistId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArtistSong_SongId",
-                table: "ArtistSong",
-                column: "SongId");
+                column: "SongsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

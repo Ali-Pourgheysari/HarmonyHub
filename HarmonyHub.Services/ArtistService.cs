@@ -21,6 +21,7 @@ namespace HarmonyHub.Services
         public async Task<List<Artist>> GetAllArtistsAsync()
         {
             return await dbContext.Artists
+                .Include(x => x.Songs)
                 .Include(x => x.PhotoStorageFile)
                 .ToListAsync();
         }
@@ -28,6 +29,7 @@ namespace HarmonyHub.Services
         public async Task<Artist> GetArtistByIdAsync(int id)
         {
 			return await dbContext.Artists
+				.Include(x => x.Songs)
                 .FirstAsync(x => x.Id == id);
 		}
     }

@@ -18,16 +18,10 @@ namespace HarmonyHub.Data.EntityMappings
                 throw new ArgumentNullException(nameof(song));
             }
 
-            var artists = new List<ArtistModel>();
-            foreach (var item in song.Artists)
-            {
-                artists.Add(item.Artist.ToArtistModel());
-            }
-
             return new SongModel
             {
                 Id = song.Id,
-                Artists = artists,
+                Artists = song.Artists.ToList().ToArtistModels(),
                 Name = song.Name,
                 AudioStorageFile = song.AudioStorageFile?.ToStorageFileModel(),
                 CoverStorageFile = song.CoverStorageFile?.ToStorageFileModel(),
@@ -57,32 +51,14 @@ namespace HarmonyHub.Data.EntityMappings
                 throw new ArgumentNullException(nameof(song));
             }
 
-            var artists = new List<ArtistSong>();
-            foreach (var item in song.Artists)
-            {
-                artists.Add(new ArtistSong
-                {
-                    Artist = item.ToArtistEntity(),
-                    ArtistId = item.Id
-                });
-            }
-
             song = song.ToNormalizedSongFormModel();
-            var songEntity = new Song()
+            return new Song()
             {
-                Artists = artists,
+                Artists = song.Artists.ToList().ToArtistEntityList(),
                 Name = song.Name,
                 AudioStorageFile = song.AudioStorageFile?.ToStorageFileEntity(),
                 CoverStorageFile = song.CoverStorageFile?.ToStorageFileEntity(),
             };
-
-            foreach (var item in artists)
-            {
-                item.Song = songEntity;
-                item.SongId = songEntity.Id;
-            }
-
-            return songEntity;
         }
     }
 }

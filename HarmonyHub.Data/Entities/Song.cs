@@ -13,6 +13,6 @@ namespace HarmonyHub.Data.Entities
         public int CoverStorageId { get; set; }
         [ForeignKey(nameof(CoverStorageId))]
         public StorageFile? CoverStorageFile { get; set; }
-        public ICollection<ArtistSong> Artists { get; set; } = new List<ArtistSong>();
+        public ICollection<Artist> Artists { get; set; } = new List<Artist>();
     }
 }

@@ -22,6 +22,7 @@ namespace HarmonyHub.Data.EntityMappings
                 Id = artist.Id,
                 FirstName = artist.FirstName,
                 LastName = artist.LastName,
+                Songs = artist.Songs.ToList().ToSongModels()
             };
         }
 

@@ -37,7 +37,6 @@ namespace HarmonyHub.Services
         {
             List<Song> list = await dbContext.Songs
                 .Include(s => s.Artists)
-                    .ThenInclude(s => s.Artist)
                 .Include(s => s.CoverStorageFile)
                 .ToListAsync();
 
@@ -49,7 +48,6 @@ namespace HarmonyHub.Services
         {
             List<Song> list = await dbContext.Songs
                 .Include(s => s.Artists)
-                    .ThenInclude(s => s.Artist)
                 .Include(s => s.CoverStorageFile)
                 .OrderBy(s => Guid.NewGuid())
                 .Take(count)

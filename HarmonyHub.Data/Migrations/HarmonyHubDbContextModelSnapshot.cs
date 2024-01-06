@@ -22,6 +22,21 @@ namespace HarmonyHub.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ArtistSong", b =>
+                {
+                    b.Property<int>("ArtistsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SongsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArtistsId", "SongsId");
+
+                    b.HasIndex("SongsId");
+
+                    b.ToTable("ArtistSong");
+                });
+
             modelBuilder.Entity("HarmonyHub.Data.Entities.Artist", b =>
                 {
                     b.Property<int>("Id")
@@ -47,29 +62,6 @@ namespace HarmonyHub.Data.Migrations
                     b.HasIndex("PhotoSorageFileId");
 
                     b.ToTable("Artists");
-                });
-
-            modelBuilder.Entity("HarmonyHub.Data.Entities.ArtistSong", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ArtistId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SongId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArtistId");
-
-                    b.HasIndex("SongId");
-
-                    b.ToTable("ArtistSong");
                 });
 
             modelBuilder.Entity("HarmonyHub.Data.Entities.PlayList", b =>
@@ -404,6 +396,21 @@ namespace HarmonyHub.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ArtistSong", b =>
+                {
+                    b.HasOne("HarmonyHub.Data.Entities.Artist", null)
+                        .WithMany()
+                        .HasForeignKey("ArtistsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HarmonyHub.Data.Entities.Song", null)
+                        .WithMany()
+                        .HasForeignKey("SongsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("HarmonyHub.Data.Entities.Artist", b =>
                 {
                     b.HasOne("HarmonyHub.Data.Entities.StorageFile", "PhotoStorageFile")
@@ -413,25 +420,6 @@ namespace HarmonyHub.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("PhotoStorageFile");
-                });
-
-            modelBuilder.Entity("HarmonyHub.Data.Entities.ArtistSong", b =>
-                {
-                    b.HasOne("HarmonyHub.Data.Entities.Artist", "Artist")
-                        .WithMany()
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HarmonyHub.Data.Entities.Song", "Song")
-                        .WithMany("Artists")
-                        .HasForeignKey("SongId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Artist");
-
-                    b.Navigation("Song");
                 });
 
             modelBuilder.Entity("HarmonyHub.Data.Entities.PlayList", b =>
@@ -550,11 +538,6 @@ namespace HarmonyHub.Data.Migrations
             modelBuilder.Entity("HarmonyHub.Data.Entities.PlayList", b =>
                 {
                     b.Navigation("Songs");
-                });
-
-            modelBuilder.Entity("HarmonyHub.Data.Entities.Song", b =>
-                {
-                    b.Navigation("Artists");
                 });
 
             modelBuilder.Entity("HarmonyHub.Data.Entities.User", b =>
