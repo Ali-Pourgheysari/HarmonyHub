@@ -1,6 +1,7 @@
 ﻿using HarmonyHub.Data;
 using HarmonyHub.Data.Entities;
 using HarmonyHub.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,9 @@ namespace HarmonyHub.Services
         public List<Song> GetSongsList()
         {
             List<Song> list = new List<Song>();
-            list = dbContext.Songs.ToList();
+            list = dbContext.Songs
+                .Include(s => s.Artists)
+                .ToList();
             return list;
         }
     }
