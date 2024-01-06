@@ -10,6 +10,9 @@ namespace HarmonyHub.Data.Entities
         public int? AudioStorageFileId { get; set; }
         [ForeignKey(nameof(AudioStorageFileId))]
         public StorageFile? AudioStorageFile { get; set; }
+        public int CoverStorageId { get; set; }
+        [ForeignKey(nameof(CoverStorageId))]
+        public StorageFile? CoverStorageFile { get; set; }
         public ICollection<Artist> Artists { get; set; } = new List<Artist>();
     }
 }
