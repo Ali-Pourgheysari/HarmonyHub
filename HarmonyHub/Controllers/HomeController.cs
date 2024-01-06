@@ -48,7 +48,7 @@ namespace HarmonyHub.Controllers
             // convert the songs to a list of SongModel objects
             var songModels = songs.ToSongModels();
 
-            // devide the songs into three lists
+            // divide the songs into three lists
             var trends = songModels.Take(10).ToList();
             var newSongs = songModels.Skip(10).Take(10).ToList();
             var topSongs = songModels.Skip(20).Take(10).ToList();
