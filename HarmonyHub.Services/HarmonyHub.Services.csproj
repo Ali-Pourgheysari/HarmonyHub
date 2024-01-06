@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HarmonyHub.Data\HarmonyHub.Data.csproj" />
+  </ItemGroup>
+
 </Project>
