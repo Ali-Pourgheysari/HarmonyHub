@@ -226,6 +226,29 @@ namespace HarmonyHub.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("HarmonyHub.Data.Entities.UserFollowing", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ArtistId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArtistId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserFollowings");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -415,6 +438,23 @@ namespace HarmonyHub.Data.Migrations
                     b.Navigation("AudioStorageFile");
                 });
 
+            modelBuilder.Entity("HarmonyHub.Data.Entities.UserFollowing", b =>
+                {
+                    b.HasOne("HarmonyHub.Data.Entities.Artist", "Artist")
+                        .WithMany()
+                        .HasForeignKey("ArtistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HarmonyHub.Data.Entities.User", "User")
+                        .WithMany("FollowingArtists")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Artist");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -473,6 +513,8 @@ namespace HarmonyHub.Data.Migrations
 
             modelBuilder.Entity("HarmonyHub.Data.Entities.User", b =>
                 {
+                    b.Navigation("FollowingArtists");
+
                     b.Navigation("PlayList");
                 });
 #pragma warning restore 612, 618

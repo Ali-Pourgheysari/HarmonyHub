@@ -28,4 +28,8 @@
     <ProjectReference Include="..\HarmonyHub.Data\HarmonyHub.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\static\" />
+  </ItemGroup>
+
 </Project>
