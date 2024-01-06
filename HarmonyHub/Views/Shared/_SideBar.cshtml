@@ -7,44 +7,8 @@
 	<title>Landing</title>
 </head>
 <body>
-	<div class="sidebar">
-		<div class="logo">
-			<a href="#">
-				<img src="~/static/logo.png" alt="Logo" />
-			</a>
-		</div>
-
-		<div class="navigation">
-			<ul>
-				<li>
-					<a href="#">
-						<span class="fa fa-home"></span>
-						<span>Home</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<span class="fa fa-search"></span>
-						<span>Search</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-
-		<div class="navigation">
-			<ul>
-
-				<li>
-					<a href="#">
-						<span class="fa fas fa-heart"></span>
-						<span>Liked Songs</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-
+	
+	<partial name="_SideBarPartial.cshtml" />
 
 	<main role="main" class="pb-3">
 		@RenderBody()

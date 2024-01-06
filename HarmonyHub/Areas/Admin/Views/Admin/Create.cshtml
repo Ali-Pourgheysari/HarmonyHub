@@ -1,0 +1,38 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using HarmonyHub.Data.Models
+
+@model SongModel
+
+@{
+    ViewData["Title"] = "Add Song";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<link href="~/css/sidebar.css" rel="stylesheet" />
+
+<header>
+    <partial name="~/Views/Shared/_SideBarPartial.cshtml"/>
+</header>
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Name">Song name</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Artists">Artist name</label>
+        <input asp-for="Artists" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="AudioStorageFile.FilePath">Audio file adress</label>
+        <input asp-for="AudioStorageFile.FilePath" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CoverStorageFile.FilePath">cover file adress</label>
+        <input asp-for="CoverStorageFile.FilePath" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

@@ -1,0 +1,50 @@
+﻿<div class="sidebar">
+	<div class="logo">
+		<a href="#">
+			<img src="~/static/logo.png" alt="Logo" />
+		</a>
+	</div>
+
+	<div class="navigation">
+		<ul>
+			<li>
+				<a href="#">
+					<span class="fa fa-home"></span>
+					<span>Home</span>
+				</a>
+			</li>
+
+			<li>
+				<a href="#">
+					<span class="fa fa-search"></span>
+					<span>Search</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="navigation">
+		<ul>
+
+			<li>
+				<a href="#">
+					<span class="fa fas fa-heart"></span>
+					<span>Liked Songs</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="topbar">
+	<div class="prev-next-buttons">
+		<button type="button" class="fa fas fa-chevron-left"></button>
+		<button type="button" class="fa fas fa-chevron-right"></button>
+	</div>
+
+	<div class="navbar">
+		<form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+			<button id="logout" type="submit">Log Out</button>
+		</form>
+	</div>
+</div>
