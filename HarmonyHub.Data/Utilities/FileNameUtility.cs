@@ -11,7 +11,7 @@ namespace HarmonyHub.Data.Utilities
     public static class FileNameUtility
     {
         // Extension to include name in the song model
-        public static SongModel ToNormalizedSongModel(this SongModel song)
+        public static SongFormModel ToNormalizedSongFormModel(this SongFormModel song)
         {
             if (song == null)
             {
@@ -30,7 +30,7 @@ namespace HarmonyHub.Data.Utilities
                 FilePath = song?.CoverStorageFile?.FilePath
             };
 
-            return new SongModel()
+            return new SongFormModel()
             {
                 Artists = song.Artists,
                 Name = song.Name,

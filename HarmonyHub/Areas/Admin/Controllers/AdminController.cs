@@ -11,10 +11,13 @@ namespace HarmonyHub.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         private readonly ISongService songService;
+        private readonly IArtistService artistService;
 
-        public AdminController(ISongService songService)
+        public AdminController(ISongService songService,
+                               IArtistService artistService)
         {
             this.songService = songService;
+            this.artistService = artistService;
         }
 
         [Route("Admin")]
@@ -25,17 +28,20 @@ namespace HarmonyHub.Areas.Admin.Controllers
         }
         [Route("Admin/Create")]
         // GET: HomeController/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            var artists = (await artistService.GetAllArtistsAsync()).ToArtistModels();
+            SongFormModel song = new SongFormModel();
+            song.AllArtists = artists;
+            return View(song);
         }
         [Route("Admin/Create")]
         // POST: HomeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(SongModel collection)
+        public async Task<ActionResult> Create(SongFormModel collection)
         {
-            var song = await songService.AddSongAsync(collection.ToSongEntity());
+            var song = await songService.AddSongAsync(collection.ToSongFormEntity());
             Console.WriteLine(song.Name);
             return View();
         }

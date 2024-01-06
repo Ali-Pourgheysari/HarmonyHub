@@ -44,14 +44,14 @@ namespace HarmonyHub.Data.EntityMappings
             return songModels;
         }
 
-        public static Song ToSongEntity(this SongModel song)
+        public static Song ToSongFormEntity(this SongFormModel song)
         {
             if (song == null)
             {
                 throw new ArgumentNullException(nameof(song));
             }
 
-            song = song.ToNormalizedSongModel();
+            song = song.ToNormalizedSongFormModel();
             return new Song()
             {
                 Artists = song.Artists.ToList().ToArtistEntityList(),
