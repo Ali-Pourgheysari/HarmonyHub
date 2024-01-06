@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HarmonyHub.Data\HarmonyHub.Data.csproj" />
+    <ProjectReference Include="..\HarmonyHub.Services\HarmonyHub.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
