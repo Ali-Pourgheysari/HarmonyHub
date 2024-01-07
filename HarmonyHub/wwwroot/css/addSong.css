@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
     color: rgb(241, 126, 32);
-    box-shadow: 0 0 20px rgba(241, 126, 32, 0.2);
+    box-shadow: 0 0 10px rgba(241, 126, 32, 0.2);
     background-color: #181a1b;
     font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
 }
@@ -38,11 +38,11 @@
     
 }
 
-.add-song-container .image-container {
-    position: relative;
-    height: auto;
-    max-width: 50%;
-}
+    .add-song-container .image-container img {
+        position: relative;
+        height: auto;
+        width: 100%;
+    }
 
     .add-song-container .form-container input,
     .add-song-container .form-container select{
