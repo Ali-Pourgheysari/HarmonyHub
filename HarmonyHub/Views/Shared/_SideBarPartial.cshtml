@@ -43,8 +43,12 @@
 	</div>
 
 	<div class="navbar">
+		<a asp-action="Index" asp-controller="Profile">
+				<button style="background-color: rgb(241, 126, 32);">Profile</button>
+		</a>
 		<form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
 			<button id="logout" type="submit">Log Out</button>
 		</form>
+
 	</div>
 </div>
