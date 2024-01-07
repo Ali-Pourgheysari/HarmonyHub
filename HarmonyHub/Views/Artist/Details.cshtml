@@ -54,7 +54,7 @@
                   <div class="tracks">
                         @foreach (var track in Model.Songs.Take(10))
 						{
-							<div class="track">
+                                <div class="track" onclick="cspd_change_music('@track.AudioStorageFile.FilePath', '@track.CoverStorageFile.FilePath', '@track.Name');">
 
 								<div class="track__art">
 
@@ -95,5 +95,6 @@
     </div>
 </div>
 </div>
+
 
 

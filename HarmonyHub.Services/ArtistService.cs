@@ -30,6 +30,8 @@ namespace HarmonyHub.Services
 			return await dbContext.Artists
 				.Include(x => x.Songs)
                     .ThenInclude(s => s.CoverStorageFile)
+                .Include(x => x.Songs)
+                    .ThenInclude(s => s.AudioStorageFile)
                 .FirstAsync(x => x.Id == id);
 		}
     }

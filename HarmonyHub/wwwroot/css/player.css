@@ -1,0 +1,132 @@
+﻿
+#cs_audio {
+    display: none;
+}
+
+#cs_audioplayer {
+    height: 8%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: #000000;
+    padding: 50px;
+    padding-top: 4px;
+    padding-bottom: 6px;
+    color: #fff;
+    z-index: 1;
+}
+
+.cs_audio_bar {
+    background-color: rgb(161, 156, 148);
+    width: 100%;
+    height: 6px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.cs_audio_bar_loaded {
+    background-color: #44363d;
+    width: 0%;
+    height: 6px;
+    position: absolute;
+    transition: 0.1s;
+}
+
+.cs_audio_bar_now {
+    background-color: rgb(241, 126, 32);
+    width: 0%;
+    height: 6px;
+    position: absolute;
+    z-index: 999;
+    transition: 0.1s;
+}
+
+#cs_play_pause_btn {
+    font-size: 24px;
+    position: relative;
+    ;
+}
+
+.cs_btns {
+    margin-right: 100px;
+}
+
+    .cs_btns img {
+        -webkit-filter: invert(1);
+        filter: invert(1);
+        height: 30px;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+.cs_next_track {
+    transform: rotate(180deg);
+}
+
+#cs_play_pause_btn i {
+    font-size: 1.45em;
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-bottom: 4px;
+}
+
+#cs_audio_sound {
+    position: relative;
+    right: 5px;
+    float: right;
+    margin-left: 15px;
+    top: -2px;
+}
+
+.cs_left_time {
+    position: relative;
+    font-size: 18px;
+    bottom: 0;
+    left: 0;
+    float: left;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.cs_vol-bar {
+    height: 6px;
+    width: 65px;
+    background-color: #ccc;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.cs_volume {
+    height: 6px;
+    width: 28px;
+    background-color: rgb(241, 126, 32);
+    position: absolute;
+}
+
+.fa_volume_down {
+    vertical-align: middle;
+    font-size: 1.14em;
+}
+
+#cs_audio_play,
+#cs_audio_pause {
+    padding: 10px;
+}
+
+.cs_track_info {
+    float: left;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+    .cs_track_info img {
+        height: 50px;
+        margin-left: 50px;
+        margin-right: 20px;
+    }
