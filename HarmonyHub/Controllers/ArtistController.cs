@@ -44,6 +44,14 @@ namespace HarmonyHub.Controllers
 					var followedArtistIds = user.FollowingArtists.Select(a => a.ArtistId).ToList();
 					// check if the artist id is in the list
 					artistModel.IsFollowed = followedArtistIds.Contains(id);
+					// create a list of playlist song ids
+					var playListSongIds = user.PlayList.Songs.Select(s => s.SongId).ToList();
+					// for each song in the artist's songs
+					foreach (var song in artistModel.Songs)
+					{
+						   // check if the song id is in the list
+						   song.InPLayList = playListSongIds.Contains(song.Id);
+					}
                 }
             }
 			return View(artistModel);

@@ -78,6 +78,14 @@
 
 								</div>
 
+                                <div class="track__plays">
+                                    <a asp-action="AddSong" asp-controller="PlayList" asp-route-id="@track.Id" >
+                                        <button class=" @(track.InPLayList?"remove":"")">
+                                           +
+                                        </button>
+                                    </a>
+                                </div>
+
 							</div>
 						}
 

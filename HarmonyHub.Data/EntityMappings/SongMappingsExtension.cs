@@ -25,6 +25,7 @@ namespace HarmonyHub.Data.EntityMappings
                 Name = song.Name,
                 AudioStorageFile = song.AudioStorageFile?.ToStorageFileModel(),
                 CoverStorageFile = song.CoverStorageFile?.ToStorageFileModel(),
+                InPLayList = false
             };
         }
 
@@ -39,7 +40,8 @@ namespace HarmonyHub.Data.EntityMappings
                 Id = song.Id,
                 Name = song.Name,
                 AudioStorageFile = song.AudioStorageFile?.ToStorageFileModel(),
-                CoverStorageFile = song.CoverStorageFile?.ToStorageFileModel()
+                CoverStorageFile = song.CoverStorageFile?.ToStorageFileModel(),
+                InPLayList = false
             };
         }
 

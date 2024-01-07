@@ -10,5 +10,6 @@ namespace HarmonyHub.Data.Models
         public StorageFileModel? AudioStorageFile { get; set; }
         public StorageFileModel? CoverStorageFile { get; set; }
         public ICollection<ArtistModel> Artists { get; set; } = new List<ArtistModel>();
+        public bool InPLayList { get; set; }
     }
 }

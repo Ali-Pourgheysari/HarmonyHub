@@ -34,5 +34,20 @@ namespace HarmonyHub.Services
             await dbContext.SaveChangesAsync();
             return playListSong;
         }
+
+        public async Task<int> RemoveFromPlayListAsync(int songId, PlayList playList)
+        {
+            var playListSong = playList.Songs.FirstOrDefault(s => s.SongId == songId);
+            if (playListSong != null)
+            {
+                playList.Songs.Remove(playListSong);
+            }
+            return await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> Exists(int songId, PlayList playList)
+        {
+            return await Task.FromResult(playList.Songs.Any(s => s.SongId == songId));
+        }
     }
 }

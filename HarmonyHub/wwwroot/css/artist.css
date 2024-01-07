@@ -444,7 +444,36 @@
 .tracks .track__plays {
     color: #aaa;
     margin-left: auto;
-    padding-right: 10px;
+    margin-right: 50px;
+    padding: 5px;
+    text-decoration : none;
+}
+
+.tracks .track__plays a {
+    text-decoration: none;
+}
+
+    .tracks .track__plays .remove {
+        transform: rotate(45deg);
+    }
+
+
+.tracks .track__plays button{
+    border-radius: 50%;
+    height: 32px;
+    width: 30px;
+    border: 1px solid gray;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    font-size: 32px;
+}
+.tracks .track__plays button:hover {
+    border: none;
+    color: black;
+    background-color: rgb(241, 126, 32)
 }
 
 .tracks .track__length {

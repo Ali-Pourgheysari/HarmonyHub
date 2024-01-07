@@ -10,5 +10,7 @@ namespace HarmonyHub.Services.Interfaces
     public interface IPlayListService
     {
         Task<PlayListSong> AddToPlayListAsync(int songId, PlayList playList);
+        Task<int> RemoveFromPlayListAsync(int songId, PlayList playList);
+        Task<bool> Exists(int songId, PlayList playList);
     }
 }
