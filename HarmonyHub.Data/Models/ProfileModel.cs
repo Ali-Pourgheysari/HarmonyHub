@@ -12,6 +12,6 @@ namespace HarmonyHub.Data.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public PlayListModel PlayList { get; set; } = new PlayListModel();
-        public List<ArtistModel> Artists { get; set; } = new List<ArtistModel>();
+        public List<ArtistModel> FollowingArtists { get; set; } = new List<ArtistModel>();
     }
 }
