@@ -22,7 +22,8 @@ namespace HarmonyHub.Data.EntityMappings
                 Id = artist.Id,
                 FirstName = artist.FirstName,
                 LastName = artist.LastName,
-                Songs = artist.Songs.ToList().ToSongModelsShallow()
+                Songs = artist.Songs.ToList().ToSongModelsShallow(),
+                IsFollowed = false
             };
         }
 

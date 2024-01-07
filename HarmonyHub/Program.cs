@@ -21,6 +21,8 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 
 builder.Services.AddTransient<ISongService, SongService>();
 builder.Services.AddTransient<IArtistService, ArtistService>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IUserFollowingService, UserFollowingService>();
 
 var app = builder.Build();
 app.MapRazorPages();

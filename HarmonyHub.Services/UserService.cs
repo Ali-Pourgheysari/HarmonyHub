@@ -40,5 +40,13 @@ namespace HarmonyHub.Services
                             .ThenInclude(s => s.Artists)
                 .FirstAsync(u => u.Id == id);
         }
+
+        public async Task<int> UpdateUserAsync(User user)
+        {
+            // Update the user
+            dbContext.Users.Update(user);
+            // Save the changes
+            return await dbContext.SaveChangesAsync();
+        }
     }
 }

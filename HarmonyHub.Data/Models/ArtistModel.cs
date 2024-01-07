@@ -8,5 +8,6 @@ namespace HarmonyHub.Data.Models
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public List<SongModel> Songs { get; set; } = new();
+        public bool IsFollowed { get; set; }
     }
 }

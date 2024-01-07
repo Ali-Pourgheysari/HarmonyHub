@@ -29,7 +29,7 @@
 
               <div class="artist__info__actions">
 
-                <button class="button-light">Follow</button>
+                <a asp-action="Follow" asp-route-id="@Model.Id"><button  class="button-light">@(Model.IsFollowed?"Unfollow":"Follow")</button></a>
               </div>
 
             </div>

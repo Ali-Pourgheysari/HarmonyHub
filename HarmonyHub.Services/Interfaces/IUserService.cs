@@ -11,5 +11,6 @@ namespace HarmonyHub.Services.Interfaces
     {
         Task<User> GetUserByIdAsync(string id);
         Task<User> GetUserByEmailAsync(string email);
+        Task<int> UpdateUserAsync(User user);
     }
 }
