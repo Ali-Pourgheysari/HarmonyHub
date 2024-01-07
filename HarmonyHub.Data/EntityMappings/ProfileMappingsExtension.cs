@@ -29,15 +29,12 @@ namespace HarmonyHub.Data.EntityMappings
             };
         }
 
-        public static User ToEditProfileModel(this EditProfileModel editProfileModel)
+        public static User UpdateFields(this User user, EditProfileModel model)
         {
-            return new User
-            {
-                Id = editProfileModel.Id,
-                FirstName = editProfileModel.FirstName,
-                LastName = editProfileModel.LastName,
-                PhoneNumber = editProfileModel.PhoneNumber
-            };
+            user.LastName = model.LastName;
+            user.FirstName = model.FirstName;
+            user.PhoneNumber = model.PhoneNumber;
+            return user;
         }
     }
 }
