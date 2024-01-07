@@ -25,7 +25,11 @@ namespace HarmonyHub.Services
                 .Include(u => u.PlayList)
                     .ThenInclude(pl => pl.Songs)
                         .ThenInclude(s => s.Song)
-                            .ThenInclude(s => s.Artists)
+                            .ThenInclude(s => s.AudioStorageFile)
+                .Include(u => u.PlayList)
+                    .ThenInclude(pl => pl.Songs)
+                        .ThenInclude(s => s.Song)
+                            .ThenInclude(s => s.CoverStorageFile)
                 .FirstAsync(u => u.Email == email);
         }
 
