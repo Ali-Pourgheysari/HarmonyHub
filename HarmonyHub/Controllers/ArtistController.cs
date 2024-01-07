@@ -1,5 +1,6 @@
 ﻿using HarmonyHub.Data.EntityMappings;
 using HarmonyHub.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,7 +48,7 @@ namespace HarmonyHub.Controllers
             }
 			return View(artistModel);
 		}
-
+		[Authorize]
 		// Get: Artist/Follow/1
 		public async Task<ActionResult> Follow(int id)
 		{
