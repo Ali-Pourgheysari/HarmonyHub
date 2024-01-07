@@ -1,4 +1,6 @@
-﻿using HarmonyHub.Services.Interfaces;
+﻿using HarmonyHub.Data.EntityMappings;
+using HarmonyHub.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,10 +14,18 @@ namespace HarmonyHub.Controllers
         {
             this.userService = userService;
         }
-        // GET: ProfileController
-        public ActionResult Index()
+        // GET: Profile
+        [Authorize]
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var userName = User.Identity?.Name;
+            if (userName != null)
+            {
+                var user = await userService.GetUserByEmailAsync(userName);
+                var profile = user.ToProfileModel();
+                return View(profile);
+            }
+            return NotFound();
         }
 
         public ActionResult Edit()
