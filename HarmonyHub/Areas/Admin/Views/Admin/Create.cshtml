@@ -29,25 +29,25 @@
         <form method="post">
             <div class="form-group">
                 <label asp-for="Name">Song name</label>
-                <input asp-for="Name" class="add-song-form-control" />
+                <input asp-for="Name" class="form-control-obj" />
                 <div class="underline"></div>
             </div>
             <div class="form-group">
                 <label asp-for="Artists">Artist name(s)</label>
                     @* @Html.DropDownListFor(m => m.Artists, TypeOptions, "Select one") *@
-                <select asp-for="ArtistFormIds" multiple asp-items="TypeOptions" class="add-song-form-control drowp-down">
+                <select asp-for="ArtistFormIds" multiple asp-items="TypeOptions" class="form-control-obj drowp-down">
                 </select>
 
             </div>
             <div class="form-group">
                 <label asp-for="AudioStorageFile.FilePath">Audio file adress</label>
-                <input asp-for="AudioStorageFile.FilePath" class="add-song-form-control" />
+                <input asp-for="AudioStorageFile.FilePath" class="form-control-obj" />
                 <div class="underline"></div>
 
             </div>
             <div class="form-group">
                 <label asp-for="CoverStorageFile.FilePath">cover file adress</label>
-                <input asp-for="CoverStorageFile.FilePath" class="add-song-form-control" />
+                <input asp-for="CoverStorageFile.FilePath" class="form-control-obj" />
                 <div class="underline"></div>
 
             </div>
