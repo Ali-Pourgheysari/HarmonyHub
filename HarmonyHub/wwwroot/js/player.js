@@ -281,6 +281,9 @@ function cspd_change_music(music, cover, name) {
     var name_id = document.getElementById("track-name");
     name_id.innerHTML = name;
 
+    var dl_id = document.getElementById("cs_track_dl");
+    dl_id.setAttribute('href', music);
+
     try {
 
         var measuredTime = new Date(null);
