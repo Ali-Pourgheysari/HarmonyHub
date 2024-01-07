@@ -9,6 +9,6 @@ namespace HarmonyHub.Data.Models
     public class PlayListModel
     {
         public string? UserName { get; set; }
-        public ICollection<SongModel> Songs { get; set; } = new List<SongModel>();
+        public List<SongModel> Songs { get; set; } = new();
     }
 }

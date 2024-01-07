@@ -81,7 +81,7 @@ namespace HarmonyHub.Controllers
 				}
 			}
             // redirect to the artist details page
-			return RedirectToAction("Details", new { id = id });
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 	}
 }
