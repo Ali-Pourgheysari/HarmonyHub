@@ -9,5 +9,6 @@ namespace HarmonyHub.Data.Models
     public class SongFormModel : SongModel
     {
         public List<ArtistModel>? AllArtists { get; set; }
+        public List<string> ArtistFormIds { get; set; }
     }
 }

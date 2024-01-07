@@ -4,6 +4,7 @@ using HarmonyHub.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using HarmonyHub.Data.Utilities;
 
 namespace HarmonyHub.Areas.Admin.Controllers
 {
@@ -41,9 +42,14 @@ namespace HarmonyHub.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(SongFormModel collection)
         {
-            var song = await songService.AddSongAsync(collection.ToSongFormEntity());
+            var songEntity = collection.ToNormalizedSongModel().ToSongEntity();
+            foreach(var id in collection.ArtistFormIds)
+            {
+                songEntity.Artists.Add(await artistService.GetArtistByIdAsync(int.Parse(id)));
+            }
+            var song = await songService.AddSongAsync(songEntity);
             Console.WriteLine(song.Name);
-            return View();
+            return RedirectToAction(nameof(Create));
         }
     }
 }

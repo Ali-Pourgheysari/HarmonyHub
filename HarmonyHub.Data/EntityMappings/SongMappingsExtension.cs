@@ -75,14 +75,13 @@ namespace HarmonyHub.Data.EntityMappings
             return songModels;
         }
 
-        public static Song ToSongFormEntity(this SongFormModel song)
+        public static Song ToSongEntity(this SongModel song)
         {
             if (song == null)
             {
                 throw new ArgumentNullException(nameof(song));
             }
 
-            song = song.ToNormalizedSongFormModel();
             return new Song()
             {
                 Artists = song.Artists.ToList().ToArtistEntityList(),

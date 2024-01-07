@@ -6,13 +6,13 @@
 @{
     ViewData["Title"] = "Add Song";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<string> names = new List< string>();
-    List<int> ids = new List<int>();
-    foreach (var artist in Model.AllArtists)
-    {
-        names.Add(artist.FirstName + " " + artist.LastName);
-        ids.Add(artist.Id);
-    }
+
+    var TypeOptions = Model.AllArtists
+                     .Select(i => new SelectListItem
+                             {
+                                 Value = i.Id.ToString(),
+                                 Text = i.FirstName + " " + i.LastName
+                             }).ToList();
 }
 <link href="~/css/sidebar.css" rel="stylesheet" />
 
@@ -29,7 +29,10 @@
     </div>
     <div class="form-group">
         <label asp-for="Artists">Artist name</label>
-        <select asp-for="Artists" class="form-control" asp-items="new SelectList(names, ids)"></select>
+            @* @Html.DropDownListFor(m => m.Artists, TypeOptions, "Select one") *@
+        <select asp-for="ArtistFormIds" asp-items="TypeOptions" class="form-control">
+            <option value="">Select one</option>
+        </select>
     </div>
     <div class="form-group">
         <label asp-for="AudioStorageFile.FilePath">Audio file adress</label>
