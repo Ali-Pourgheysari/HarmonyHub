@@ -23,8 +23,9 @@ namespace HarmonyHub.Data.EntityMappings
             return new ProfileModel
             {
                 Name = user.FirstName + " " + user.LastName,
-                Email = user.Email,
-                Artists = artistModels
+                Email = user?.Email,
+                FollowingArtists = artistModels,
+                PlayList = user?.PlayList?.ToPlayListModel()
             };
         }
     }
