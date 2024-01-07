@@ -28,5 +28,16 @@ namespace HarmonyHub.Data.EntityMappings
                 PlayList = user?.PlayList?.ToPlayListModel()
             };
         }
+
+        public static User ToEditProfileModel(this EditProfileModel editProfileModel)
+        {
+            return new User
+            {
+                Id = editProfileModel.Id,
+                FirstName = editProfileModel.FirstName,
+                LastName = editProfileModel.LastName,
+                PhoneNumber = editProfileModel.PhoneNumber
+            };
+        }
     }
 }
