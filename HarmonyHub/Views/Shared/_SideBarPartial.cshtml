@@ -15,10 +15,13 @@
 			</li>
 
 			<li>
-				<a href="#">
-					<span class="fa fa-search"></span>
-					<span>Search</span>
-				</a>
+				<form id="search" asp-action="Index" asp-controller="Search" method="get">
+					<a href="#" onclick="search_submit()">
+						<span class="fa fa-search"></span>
+					</a>
+						<span>
+							<input id="search-box" class="sidebar-search" type="text" name="query" placeholder="Search"/>					</span>
+				</form>
 			</li>
 		</ul>
 	</div>

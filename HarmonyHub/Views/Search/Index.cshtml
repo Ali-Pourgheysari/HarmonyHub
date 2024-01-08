@@ -1,0 +1,110 @@
+﻿@model SearchResultModel
+@{
+	ViewData["Title"] = Model.Query + " - Search";
+	Layout = "_SideBar";
+}
+
+<link rel="stylesheet" href="~/css/artist.css" />
+<div style="margin-left: 244px">
+<div class="content">
+    <div class="content__middle">
+        <div class="artist is-verified">
+@*             <div class="artist__header">
+                <div class="artist__info">
+                    <div class="profile__img">
+                        <img src="~/static/ali.jpg" alt="G-Eazy"/>
+                    </div>
+                    <div class="artist__info__meta">
+                        <div class="artist__info__name">@Model.Name</div>
+                        <div class="artist__info__type">@Model.Email</div>
+                        <div class="artist__info__actions">
+                            <a asp-action="Edit"><button  class="button-light">Edit Profile</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div> *@
+            <div class="artist__content">
+                <div class="tab-content">
+                    <!-- Overview -->
+                    <div role="tabpanel" class="tab-pane active" id="artist-overview">
+                        <div class="overview">
+                            <div class="overview__artist">
+                            <!-- Popular-->
+                                <div class="section-title">Songs</div>
+                                <div class="tracks">
+                                        @foreach (var track in Model.Songs)
+                                        {
+                                            <div class="track" onclick="cspd_change_music('@track.AudioStorageFile.FilePath', '@track.CoverStorageFile.FilePath', '@track.Name');">
+                                                <div class="track__art">
+                                                    <img src="@track?.CoverStorageFile?.FilePath" alt="@track?.Name" />
+                                                </div>
+                                                <div class="track__number">@(Model.Songs.IndexOf(track) + 1)</div>
+                                                <div class="track__added">
+                                                    <i class="ion-checkmark-round added"></i>
+                                                </div>
+                                                <div class="track__title">@track.Name</div>
+                                                <div class="track__explicit">
+                                                    <span class="label">Explicit</span>
+                                                </div>
+                                                <div class="track__plays">
+                                                    <a asp-action="AddSong" asp-controller="PlayList" asp-route-id="@track.Id" >
+                                                        <button class="@(track.InPLayList?"remove":"")">
+                                                        +
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="artist__content">
+                <div class="tab-content">
+                    <!-- Overview -->
+                    <div role="tabpanel" class="tab-pane active" id="artist-overview">
+                        <div class="overview">
+                            <div class="overview__artist">
+                            <!-- Popular-->
+                                <div class="section-title">Artists</div>
+                                <div class="tracks">
+                                        @foreach (var artist in Model.Artists)
+                                        { 
+                                                <div class="track">
+                                                    <div class="track__art">
+                                                        <img src="~/static/ali.jpg" alt="@artist?.LastName @artist?.LastName" />
+                                                    </div>
+                                                    <div class="track__number">@(Model.Artists.IndexOf(artist) + 1)</div>
+                                                    <div class="track__added">
+                                                        <i class="ion-checkmark-round added"></i>
+                                                    </div>
+                                                        <a asp-action="Details" asp-controller="Artist" asp-route-id="@artist.Id">
+                                                            <div class="track__title">@artist?.LastName @artist?.LastName</div>
+                                                        </a>
+                                                    <div class="track__plays">
+                                                        <a asp-action="Follow" asp-controller="Artist" asp-route-id="@artist.Id" >
+                                                            <button class="@(artist.IsFollowed?"remove":"")">
+                                                            +
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            
+                                        }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        var searchBox = document.getElementById("search-box");
+		searchBox.value = "@Model.Query";
+	}
+</script>

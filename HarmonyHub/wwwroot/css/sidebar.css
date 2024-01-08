@@ -18,6 +18,15 @@ body {
 	padding: 24px;
 }
 
+.sidebar-search {
+	width: 80%;
+	height: 30px;
+	border: none;
+	background-color: transparent;
+	color: white;
+	padding: 10px
+}
+
 	.sidebar .logo img {
 		width: 130px;
 	}
