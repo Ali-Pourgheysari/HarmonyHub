@@ -49,6 +49,7 @@ namespace HarmonyHub.Services
             List<Song> list = await dbContext.Songs
                 .Include(s => s.Artists)
                 .Include(s => s.CoverStorageFile)
+                .Include(s => s.AudioStorageFile)
                 .OrderBy(s => Guid.NewGuid())
                 .Take(count)
                 .ToListAsync();
@@ -60,7 +61,23 @@ namespace HarmonyHub.Services
             return await dbContext.Songs
                 .Include(s => s.Artists)
                 .Include(s => s.CoverStorageFile)
+                .Include(s => s.AudioStorageFile)
                 .FirstAsync(s => s.Id == id);
+        }
+
+        public async Task<List<Song>> SearchSongByString(string query)
+        {
+            List<Song> list = await dbContext.Songs
+                .Include(s => s.Artists)
+                .Include(s => s.CoverStorageFile)
+                .Include(s => s.AudioStorageFile)
+                .Where(s => s.Name.Contains(query) 
+                    || s.Artists.Any(a => a.FirstName.Contains(query))
+                    || s.Artists.Any(a => a.LastName.Contains(query))
+                )
+                .ToListAsync();
+
+            return list;
         }
     }
 }
