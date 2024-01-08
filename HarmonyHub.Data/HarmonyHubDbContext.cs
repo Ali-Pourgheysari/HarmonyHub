@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Reflection.Emit;
 
 namespace HarmonyHub.Data
 {
@@ -20,6 +21,21 @@ namespace HarmonyHub.Data
         public DbSet<StorageFile> StorageFiles { get; set; }
 
         public HarmonyHubDbContext(DbContextOptions<HarmonyHubDbContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            // delete properties related to one user when the user is deleted
+            builder.Entity<User>()
+                .HasOne(u => u.PlayList)
+                .WithOne(p => p.User)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<User>()
+                .HasMany(u => u.FollowingArtists)
+                .WithOne(f => f.User)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }
 
