@@ -34,5 +34,17 @@ namespace HarmonyHub.Services
                     .ThenInclude(s => s.AudioStorageFile)
                 .FirstAsync(x => x.Id == id);
 		}
+
+        public async Task<List<Artist>> SearchArtistByString(string query)
+        {
+            var list = await dbContext.Artists
+                .Include(a => a.Songs)
+                .Where(a => a.FirstName.Contains(query)
+                         || a.LastName.Contains(query)
+                )
+                .ToListAsync();
+
+            return list;
+        }
     }
 }

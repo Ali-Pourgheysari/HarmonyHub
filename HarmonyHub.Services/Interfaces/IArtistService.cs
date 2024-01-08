@@ -11,6 +11,6 @@ namespace HarmonyHub.Services.Interfaces
     {
         Task<Artist> GetArtistByIdAsync(int id);
         Task<List<Artist>> GetAllArtistsAsync();
-
+        Task<List<Artist>> SearchArtistByString(string query);
     }
 }
