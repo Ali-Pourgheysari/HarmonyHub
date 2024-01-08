@@ -3,6 +3,7 @@ using HarmonyHub.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using HarmonyHub.Data.Utilities;
 
 namespace HarmonyHub.Controllers
 {
@@ -40,18 +41,11 @@ namespace HarmonyHub.Controllers
                 var user = await userService.GetUserByEmailAsync(userName);
                 if (user != null)
 				{
-                    // create a list of followed artist ids
-					var followedArtistIds = user.FollowingArtists.Select(a => a.ArtistId).ToList();
-					// check if the artist id is in the list
-					artistModel.IsFollowed = followedArtistIds.Contains(id);
-					// create a list of playlist song ids
-					var playListSongIds = user.PlayList.Songs.Select(s => s.SongId).ToList();
-					// for each song in the artist's songs
-					foreach (var song in artistModel.Songs)
-					{
-						   // check if the song id is in the list
-						   song.InPLayList = playListSongIds.Contains(song.Id);
-					}
+					// mark the artist if followed
+					artistModel = artistModel.MarkFollowedArtist(user);
+
+					// mark the songs in the artist's playlist
+					artistModel.Songs = artistModel.Songs.MarkPlayListSongs(user);
                 }
             }
 			return View(artistModel);
