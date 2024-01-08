@@ -34,7 +34,6 @@
             </div>
             <div class="form-group">
                 <label asp-for="Artists">Artist name(s)</label>
-                    @* @Html.DropDownListFor(m => m.Artists, TypeOptions, "Select one") *@
                 <select asp-for="ArtistFormIds" multiple asp-items="TypeOptions" class="form-control-obj drowp-down">
                 </select>
 
