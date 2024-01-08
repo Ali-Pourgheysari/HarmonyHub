@@ -13,13 +13,13 @@
     align-items: center;
     color: rgb(241, 126, 32);
     box-shadow: 0 0 20px rgba(241, 126, 32, 0.4);
-    background-color: #181a1baf;
+    background-color: #181a1b;
     font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
 }
 
 .form-container {
     top: 0px;
-    width: 100%;
+    width: auto;
     height: 100%;
     min-width: 500px;
     margin: 0px 10px;
@@ -149,6 +149,7 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: middle;
+    margin-top: 15px;
 }
 
     .form-btn:hover,
@@ -162,17 +163,29 @@
         opacity: .5;
     }
 
+.form-container .delete:hover,
+.form-container .delete:active {
+    background-color: darkred !important;
+}
+
+.form-container .delete:active {
+    opacity: .5;
+}
+
 .register-form,
 .login-form,
+.data-form,
+.email-form,
+.password-form,
 .profile-form-edit {
     position: absolute;
     left: 50%;
-    bottom: 10px;
+    bottom: auto;
     transform: translate(-50%,0);
     margin: 50px 0px;
     display: flex;
     width: fit-content;
-    height: 75%;
+    height: 60%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -183,19 +196,31 @@
 }
 
 
-.profile-form-edit .form-container .underline:before,
-.register-form .form-container .underline:before,
-.login-form .form-container .underline:before {
-    width: 88.5% !important;
-}
-
-    .form-container a,
-    .form-container .validation {
-        color: rgb(241, 126, 32);
+    .profile-form-edit .form-container .underline:before,
+    .register-form .form-container .underline:before,
+    .email-form .form-container .underline:before,
+    .password-form .form-container .underline:before,
+    .data-form .form-container .underline:before,
+    .login-form .form-container .underline:before {
+        width: 84.5% !important;
     }
 
+    .form-container .validation {
+        color: rgba(241, 126, 32, 0.8);
+        font-size: small;
+        font-style: oblique;
+    }
+
+.form-container a {
+    color: rgba(241, 126, 32, 0.8);
+    font-size: 20px;
+}
+
 .profile-container,
+.email-container,
+.password-container,
 .login-container,
+.data-container,
 .register-container {
     position: absolute;
     top: 0px;
@@ -210,6 +235,8 @@
     z-index: -1;
 }
 
+.email-form,
+.data-form,
 .login-form {
     height: 50% !important;
     bottom: auto;
@@ -250,4 +277,18 @@
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem rgb(241, 126, 32);
     outline: none;
     border: 3px solid rgb(241, 126, 32);
+}
+
+.form-container p {
+    align-self: center;
+}
+
+.form-container p strong {
+    color: darkred;
+}
+
+.alert-warning-obj {
+    background-color: rgba(241, 126, 32, 0.7);
+    display: flex;
+    justify-content: center;
 }

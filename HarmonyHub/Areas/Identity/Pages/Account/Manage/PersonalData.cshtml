@@ -3,25 +3,36 @@
 @{
     ViewData["Title"] = "Personal Data";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>@ViewData["Title"]</h3>
 
-<div class="row">
-    <div class="col-md-6">
-        <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
-        <p>
-            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
-        </p>
-        <form id="download-data" asp-page="DownloadPersonalData" method="post">
-            <button class="btn btn-primary" type="submit">Download</button>
-        </form>
-        <p>
-            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Delete</a>
-        </p>
+<div class="data-container">
+    <div class="logo-form">
+        <img src="~/static/Logo-highres.png" />
+    </div>
+    <div class="row data-form">
+        <div class="col-md-6 form-container">
+            <form id="download-data" asp-page="DownloadPersonalData" method="post">
+                <h1 style="align-self:center;">@ViewData["Title"]</h1>
+                <p>Your account contains personal data that you have given us.</p>
+                <p> his page allows you to download or delete that data.</p>
+                <p>
+                    <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
+                </p>
+                <button class="w-100 form-btn" type="submit">Download</button>
+            </form>
+            <button id="delete" class="w-100 form-btn delete" onclick="location.href='@Url.Page("DeletePersonalData")'">
+                    Delete
+                </button>
+        </div>
     </div>
 </div>
 
+<script>
+
+</script>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    
 }

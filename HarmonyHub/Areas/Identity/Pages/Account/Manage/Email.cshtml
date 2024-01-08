@@ -3,39 +3,43 @@
 @{
     ViewData["Title"] = "Manage Email";
     ViewData["ActivePage"] = ManageNavPages.Email;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="email-form" method="post">
-            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
-            @if (Model.IsEmailConfirmed)
-            {
-                <div class="form-floating mb-3 input-group">
-                    <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
-                        <div class="input-group-append">
-                            <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
-                        </div>
-                    <label asp-for="Email" class="form-label"></label>
+@* <partial name="_StatusMessage" for="StatusMessage" /> *@
+<div class="email-container">
+    <div class="logo-form">
+        <img src="~/static/Logo-highres.png" />
+    </div>
+    <div class="row email-form">
+        <div class="col-md-6 form-container">
+            <form id="email-form" method="post">
+                <h1 style="align-self:center;">Manage Email</h1>
+                <div asp-validation-summary="All" class="validation" role="alert"></div>
+                @if (Model.IsEmailConfirmed)
+                {
+                    <div class="form-group mb-3 input-group">
+                        <label asp-for="Email">Your current email</label>
+                        <input asp-for="Email" class="form-control-obj" disabled />
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group mb-3">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control-obj" disabled />
+                        <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
+                    </div>
+                }
+                <div class="form-group mb-3">
+                    <label asp-for="Input.NewEmail"></label>
+                    <input asp-for="Input.NewEmail" class="form-control-obj" autocomplete="email" aria-required="true"/>
+                    <div class="underline"></div>
+                    <span asp-validation-for="Input.NewEmail" class="validation"></span>
                 </div>
-            }
-            else
-            {
-                <div class="form-floating mb-3">
-                    <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
-                    <label asp-for="Email" class="form-label"></label>
-                    <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
-                </div>
-            }
-            <div class="form-floating mb-3">
-                <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="Please enter new email." />
-                <label asp-for="Input.NewEmail" class="form-label"></label>
-                <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
-            </div>
-            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg btn-primary">Change email</button>
-        </form>
+                <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 form-btn">Change email</button>
+            </form>
+        </div>
     </div>
 </div>
 
