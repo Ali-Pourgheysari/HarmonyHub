@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using HarmonyHub.Data.Entities
+@using HarmonyHub.Areas.Identity.Pages.Account.Manage
+
+@inject SignInManager<User> SignInManager
+@{
+	var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<div class="sidebar">
+	<div class="logo">
+		<a href="#">
+			<img src="~/static/logo.png" alt="Logo" />
+		</a>
+	</div>
+
+	<div class="navigation">
+		<ul style="position: absolute; left: 0px; width: 100%;">
+			<li style="width: 100%; left: 0px;">
+				<a href="/">
+					<span class="fa fa-home"></span>
+					<span>Home</span>
+				</a>
+			</li>
+
+			<li style="width: 100%; left: 0px;">
+				<a id="profile" asp-action="Edit" asp-controller="Profile" asp-area="">
+					<span class="fa fa-user"></span>
+					<span>Profile</span>
+				</a>
+			</li>
+			<li style="cursor: pointer;">
+				<a class="@ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-area="Identity" asp-page="/Account/Manage/Email">
+					<span class="fa fa-solid fa-envelope"></span>
+					<span>Email</span>
+				</a>
+			</li>
+			<li style="cursor: pointer;">
+				<a class="@ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-area="Identity" asp-page="/Account/Manage/PersonalData">
+					<span class="fa fa-light fa-exclamation"></span>
+					<span>Data</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+</div>

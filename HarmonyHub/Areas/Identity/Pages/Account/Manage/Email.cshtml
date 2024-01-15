@@ -5,7 +5,10 @@
     ViewData["ActivePage"] = ManageNavPages.Email;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<header>
+    <link href="~/css/sidebar.css" rel="stylesheet" />
+    <partial name="~/Views/Shared/_ProfileSideBarPartial.cshtml" />
+</header>
 @* <partial name="_StatusMessage" for="StatusMessage" /> *@
 <div class="email-container">
     <div class="logo-form">
