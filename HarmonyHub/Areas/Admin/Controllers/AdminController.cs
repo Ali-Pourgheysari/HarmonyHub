@@ -35,10 +35,7 @@ namespace HarmonyHub.Areas.Admin.Controllers
         // GET: HomeController/Create
         public async Task<ActionResult> Create()
         {
-            var artists = (await artistService.GetAllArtistsAsync()).ToArtistModels();
-            SongFormModel song = new SongFormModel();
-            song.AllArtists = artists;
-            return View(song);
+            return View(await GetSongFormModel());
         }
         [Route("Admin/Create")]
         // POST: HomeController/Create
@@ -46,32 +43,42 @@ namespace HarmonyHub.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(SongFormModel collection)
         {
-            var songFile = Request.Form.Files.FirstOrDefault(f => f.Name == "audio-file");
-            var coverFile = Request.Form.Files.FirstOrDefault(f => f.Name == "cover-file");
-            var songFileName = songFile.FileName;
-            var coverFileName = coverFile.FileName;
-
-            var uniqueAudioKey = FileNameUtility.CreateUniqueFileName(songFileName);
-            var uniqueCoverKey = FileNameUtility.CreateUniqueFileName(coverFileName);
-
-            var songPath = objectUploadService.UploadFormFile(songFile, uniqueAudioKey);
-            var coverPath = objectUploadService.UploadFormFile(coverFile, uniqueCoverKey);
-            Console.WriteLine(coverPath);
-
-            var songEntity = collection.ToNormalizedSongModel().ToSongEntity(
-                songFileName,
-                songPath,
-                coverFileName,
-                coverPath
-                );
-            foreach(var id in collection.ArtistFormIds)
+            if (ModelState.IsValid)
             {
-                songEntity.Artists.Add(await artistService.GetArtistByIdAsync(int.Parse(id)));
-            }
+                var songFile = Request.Form.Files.FirstOrDefault(f => f.Name == "audio-file");
+                var coverFile = Request.Form.Files.FirstOrDefault(f => f.Name == "cover-file");
+                var songFileName = songFile.FileName;
+                var coverFileName = coverFile.FileName;
 
-            var song = await songService.AddSongAsync(songEntity);
-            Console.WriteLine(song.Name);
-            return RedirectToAction(nameof(Create));
+                var uniqueAudioKey = FileNameUtility.CreateUniqueFileName(songFileName);
+                var uniqueCoverKey = FileNameUtility.CreateUniqueFileName(coverFileName);
+
+                var songPath = objectUploadService.UploadFormFile(songFile, uniqueAudioKey);
+                var coverPath = objectUploadService.UploadFormFile(coverFile, uniqueCoverKey);
+                Console.WriteLine(coverPath);
+				var songEntity = collection.ToNormalizedSongModel().ToSongEntity
+                (
+		            songFileName,
+		            songPath,
+		            coverFileName,
+		            coverPath
+		        );
+				foreach (var id in collection.ArtistFormIds)
+                {
+                    songEntity.Artists.Add(await artistService.GetArtistByIdAsync(int.Parse(id)));
+                }
+                var song = await songService.AddSongAsync(songEntity);
+                Console.WriteLine(song.Name);
+            }
+            return View(await GetSongFormModel());
+        }
+
+        private async Task<SongFormModel> GetSongFormModel()
+        {
+            var artists = (await artistService.GetAllArtistsAsync()).ToArtistModels();
+            SongFormModel song = new SongFormModel();
+            song.AllArtists = artists;
+            return song;
         }
     }
 }
