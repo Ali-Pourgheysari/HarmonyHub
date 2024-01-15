@@ -23,7 +23,7 @@
 				</div>
 				@foreach(var song in Model.NewSongs)
 				{
-					<div class="item">
+				<div class="item" onclick="cspd_change_music('@song.AudioStorageFile.FilePath', '@song.CoverStorageFile.FilePath', '@song.Name');">
 						<img src="@song.CoverStorageFile?.FilePath" />
 						<div class="play">
 							<span class="fa fa-play"></span>
@@ -53,7 +53,7 @@
 
 				@foreach (var song in Model.TopSongs)
 				{
-					<div class="item">
+				<div class="item" onclick="cspd_change_music('@song.AudioStorageFile.FilePath', '@song.CoverStorageFile.FilePath', '@song.Name');">
 						<img src="@song.CoverStorageFile?.FilePath" />
 						<div class="play">
 							<span class="fa fa-play"></span>
@@ -81,7 +81,7 @@
 				</div>
 			@foreach (var song in Model.Trends)
 			{
-				<div class="item">
+				<div class="item" onclick="cspd_change_music('@song.AudioStorageFile.FilePath', '@song.CoverStorageFile.FilePath', '@song.Name');">
 					<img src="@song.CoverStorageFile?.FilePath" />
 					<div class="play">
 						<span class="fa fa-play"></span>
