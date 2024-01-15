@@ -1,4 +1,5 @@
 using HarmonyHub.Data;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using HarmonyHub.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<HarmonyHubDbContext>(
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<HarmonyHubDbContext>();
 
+builder.Services.AddTransient<IEmailSender, EmailSenderService>();
 builder.Services.AddTransient<ISongService, SongService>();
 builder.Services.AddTransient<IArtistService, ArtistService>();
 builder.Services.AddTransient<IUserService, UserService>();
