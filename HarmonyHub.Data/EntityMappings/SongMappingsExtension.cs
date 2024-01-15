@@ -77,7 +77,12 @@ namespace HarmonyHub.Data.EntityMappings
             return songModels;
         }
 
-        public static Song ToSongEntity(this SongModel song)
+        public static Song ToSongEntity(
+            this SongModel song,
+            string audioFileName,
+            string audioPath,
+            string coverFileName,
+            string coverPath)
         {
             if (song == null)
             {
@@ -88,8 +93,8 @@ namespace HarmonyHub.Data.EntityMappings
             {
                 Artists = song.Artists.ToList().ToArtistEntityList(),
                 Name = song.Name,
-                AudioStorageFile = song.AudioStorageFile?.ToStorageFileEntity(),
-                CoverStorageFile = song.CoverStorageFile?.ToStorageFileEntity(),
+                AudioStorageFile = song.AudioStorageFile?.ToStorageFileEntity(audioFileName, audioPath),
+                CoverStorageFile = song.CoverStorageFile?.ToStorageFileEntity(coverFileName, coverPath),
             };
         }
     }

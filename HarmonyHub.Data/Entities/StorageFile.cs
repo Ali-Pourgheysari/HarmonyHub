@@ -7,7 +7,7 @@ namespace HarmonyHub.Data.Entities
         [Required, MaxLength(100)]
         public string? DisplayName { get; set; }
 
-        [Required, MaxLength(100)]
+        [Required, MaxLength(500)]
         public string? FilePath { get; set; }
     }
 }

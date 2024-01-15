@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "HarmonyHub.Data": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:15041;http://localhost:15042"
+    }
+  }
+}

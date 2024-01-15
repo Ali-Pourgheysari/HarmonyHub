@@ -38,5 +38,11 @@ namespace HarmonyHub.Data.Utilities
                 CoverStorageFile = coverStorageFile,
             };
         }
+
+        // create unique file name
+        public static string CreateUniqueFileName(string fileName)
+        {
+            return $"{Guid.NewGuid()}{fileName}";
+        }
     }
 }

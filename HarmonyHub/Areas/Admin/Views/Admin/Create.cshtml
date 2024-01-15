@@ -25,9 +25,9 @@
     <div class="image-container">
         <img src="~/static/add-song.jpg" alt="cover" />
     </div>
-    <div class="form-container">
+    <div class="form-container" >
         <h1 style="align-self:center;">@ViewData["Title"]</h1>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label asp-for="Name">Song name</label>
                 <input asp-for="Name" class="form-control-obj" />
@@ -39,7 +39,7 @@
                 </select>
 
             </div>
-            <div class="form-group">
+@*             <div class="form-group">
                 <label asp-for="AudioStorageFile.FilePath">Audio file adress</label>
                 <input asp-for="AudioStorageFile.FilePath" class="form-control-obj" />
                 <div class="underline"></div>
@@ -50,6 +50,18 @@
                 <input asp-for="CoverStorageFile.FilePath" class="form-control-obj" />
                 <div class="underline"></div>
 
+            </div> *@
+
+            <div>
+				<label>Audio file</label>
+				<input name="audio-file" type="file" class="form-control-obj" />
+				<div class="underline"></div>
+            </div>
+
+            <div>
+                <label>Audio file</label>
+                <input name="cover-file" type="file" class="form-control-obj" />
+                <div class="underline"></div>
             </div>
 
             <button type="submit" class="form-btn">Create</button>

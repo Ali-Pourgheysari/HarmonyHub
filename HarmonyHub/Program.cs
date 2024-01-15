@@ -26,6 +26,7 @@ builder.Services.AddTransient<IArtistService, ArtistService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IUserFollowingService, UserFollowingService>();
 builder.Services.AddTransient<IPlayListService, PlayListService>();
+builder.Services.AddTransient<IObjectUploadService, ObjectUploadService>();
 
 var app = builder.Build();
 app.MapRazorPages();
