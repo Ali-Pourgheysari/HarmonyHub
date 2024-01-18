@@ -43,15 +43,16 @@ namespace HarmonyHub.Controllers
         [Route("dashboard")]
         public async Task<IActionResult> Dashboard()
         {
-            var songs = await songService.GetRandomSongsAsync(21);
+            var count = 24;
+            var songs = await songService.GetRandomSongsAsync(count);
             
             // convert the songs to a list of SongModel objects
             var songModels = songs.ToSongModels();
 
             // divide the songs into three lists
-            var trends = songModels.Take(7).ToList();
-            var newSongs = songModels.Skip(7).Take(7).ToList();
-            var topSongs = songModels.Skip(14).Take(7).ToList();
+            var trends = songModels.Take(count/3).ToList();
+            var newSongs = songModels.Skip(count/3).Take(count/3).ToList();
+            var topSongs = songModels.Skip(2*(count/3)).Take(count/3).ToList();
 
             // create a DashboardModel object
             var dashboardModel = new DashboardModel
