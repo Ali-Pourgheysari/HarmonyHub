@@ -172,6 +172,7 @@
     opacity: .5;
 }
 
+.confirm-form,
 .register-form,
 .login-form,
 .data-form,
@@ -195,6 +196,10 @@
     font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
 }
 
+    .confirm-form{
+        height: 40% !important;
+    }
+
     .profile-form-edit .form-container .underline:before,
     .register-form .form-container .underline:before,
     .email-form .form-container .underline:before,
@@ -215,6 +220,7 @@
     font-size: 20px;
 }
 
+.confirm-container,
 .profile-container,
 .email-container,
 .password-container,
