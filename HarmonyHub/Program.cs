@@ -18,7 +18,6 @@ builder.Services.AddDbContext<HarmonyHubDbContext>(
     );
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<HarmonyHubDbContext>();
 
 builder.Services.AddTransient<IEmailSender, EmailSenderService>();

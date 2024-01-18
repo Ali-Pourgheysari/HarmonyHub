@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Identity;
 namespace HarmonyHub.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "SuperAdmin")]
     public class AdminController : Controller
     {
         private readonly ISongService songService;
