@@ -84,7 +84,7 @@
     position: absolute;
     content: "";
     height: 2px;
-    width: 44.3%;
+    width: 39%;
     transform: translate(2%,0);
     background: rgb(241, 126, 32);
     transform: scaleX(0);
