@@ -172,6 +172,7 @@
     opacity: .5;
 }
 
+.pass-form,
 .confirm-form,
 .register-form,
 .login-form,
@@ -200,14 +201,16 @@
         height: 40% !important;
     }
 
-    .profile-form-edit .form-container .underline:before,
-    .register-form .form-container .underline:before,
-    .email-form .form-container .underline:before,
-    .password-form .form-container .underline:before,
-    .data-form .form-container .underline:before,
-    .login-form .form-container .underline:before {
-        width: 84.5% !important;
-    }
+.profile-form-edit .form-container .underline:before,
+.form-container .underline:before,
+.profile-form-edit .form-container .underline:before,
+.register-form .form-container .underline:before,
+.email-form .form-container .underline:before,
+.password-form .form-container .underline:before,
+.data-form .form-container .underline:before,
+.login-form .form-container .underline:before {
+    width: 84.5% !important;
+}
 
     .form-container .validation {
         color: #d62929cf;
@@ -220,6 +223,7 @@
     font-size: 20px;
 }
 
+.pass-container,
 .confirm-container,
 .profile-container,
 .email-container,
@@ -247,6 +251,10 @@
     bottom: auto;
 }
 
+.pass-form{
+height: 50% !important;
+
+}
 .register-form {
     height: 90% !important;
 }
