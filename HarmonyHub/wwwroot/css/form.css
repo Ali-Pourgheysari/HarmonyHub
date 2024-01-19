@@ -201,8 +201,8 @@
         height: 40% !important;
     }
 
-.profile-form-edit .form-container .underline:before,
-.form-container .underline:before,
+
+.pass-container .form-container .underline:before,
 .profile-form-edit .form-container .underline:before,
 .register-form .form-container .underline:before,
 .email-form .form-container .underline:before,
