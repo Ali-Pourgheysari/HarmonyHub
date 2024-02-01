@@ -1,7 +1,7 @@
 # HarmonyHub - Your Ultimate Streaming Platform
 
 # Overview
-HarmonyHub is a full-stack streaming platform designed to provide a seamless music streaming experience similar to Spotify. The project leverages the power of .NET 7 for its robust backend and utilizes HTML, CSS, and pure JS for an elegant and responsive frontend.
+HarmonyHub is a full-stack streaming platform designed to provide a seamless music streaming experience similar to Spotify. The project leverages the power of .NET 7 for its robust backend and utilizes HTML, CSS, and pure JS for an elegant frontend.
 
 <p align="center">
   <img src="HarmonyHub/wwwroot/static/logo.png" alt="HarmonyHub Logo">
